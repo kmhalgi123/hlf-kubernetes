@@ -1,0 +1,157 @@
+---
+Organizations:
+  - &Orderer
+    Name: OrdererMSP
+    ID: OrdererMSP
+    MSPDir: ./crypto-config/ordererOrganizations/orderer.hurley.lab/msp
+   
+
+ 
+  - &DeviceManufacturer
+    Name: DeviceManufacturerMSP
+    ID: DeviceManufacturerMSP
+    MSPDir: ./crypto-config/peerOrganizations/DeviceManufacturer.hurley.lab/msp
+    AnchorPeers:
+      - Host: hlf-peer--devicemanufacturer--peer0
+        Port: 7051
+
+ 
+  - &HealthCareInstitution
+    Name: HealthCareInstitutionMSP
+    ID: HealthCareInstitutionMSP
+    MSPDir: ./crypto-config/peerOrganizations/HealthCareInstitution.hurley.lab/msp
+    AnchorPeers:
+      - Host: hlf-peer--healthcareinstitution--peer0
+        Port: 7051
+
+ 
+  - &Operator
+    Name: OperatorMSP
+    ID: OperatorMSP
+    MSPDir: ./crypto-config/peerOrganizations/Operator.hurley.lab/msp
+    AnchorPeers:
+      - Host: hlf-peer--operator--peer0
+        Port: 7051
+
+
+
+
+Capabilities:
+  Channel: &ChannelCapabilities
+    V1_4_3: true
+  Orderer: &OrdererCapabilities
+    V1_4_2: true
+  Application: &ApplicationCapabilities
+    V1_4_2: true
+
+Application: &ApplicationDefaults
+  Organizations:
+  Policies:
+    Readers:
+        Type: ImplicitMeta
+        Rule: "ANY Readers"
+    Writers:
+        Type: ImplicitMeta
+        Rule: "ANY Writers"
+    Admins:
+        Type: ImplicitMeta
+        Rule: "MAJORITY Admins"
+    BlockValidation:
+        Type: ImplicitMeta
+        Rule: "ANY Writers"
+
+  Capabilities:
+    <<: *ApplicationCapabilities
+
+Orderer: &OrdererDefaults
+  OrdererType: solo
+
+  Addresses:
+    - hlf-orderer--orderer--orderer0:7050
+
+  BatchTimeout: 2s
+
+  BatchSize:
+    MaxMessageCount: 10
+    AbsoluteMaxBytes: 99 MB
+    PreferredMaxBytes: 512 KB
+
+  Organizations:
+  Policies:
+    Readers:
+      Type: ImplicitMeta
+      Rule: "ANY Readers"
+    Writers:
+      Type: ImplicitMeta
+      Rule: "ANY Writers"
+    Admins:
+      Type: ImplicitMeta
+      Rule: "MAJORITY Admins"
+
+  Capabilities:
+    <<: *OrdererCapabilities
+
+Channel: &ChannelDefaults
+  Policies:
+    # Who may invoke the 'Deliver' API
+    Readers:
+      Type: ImplicitMeta
+      Rule: "ANY Readers"
+    # Who may invoke the 'Broadcast' API
+    Writers:
+      Type: ImplicitMeta
+      Rule: "ANY Writers"
+    # By default, who may modify elements at this config level
+    Admins:
+      Type: ImplicitMeta
+      Rule: "MAJORITY Admins"
+  Capabilities:
+      <<: *ChannelCapabilities
+
+
+Profiles:
+  OrgsOrdererGenesis:
+    <<: *ChannelDefaults
+    Orderer:
+      <<: *OrdererDefaults
+      Organizations:
+        - *Orderer
+      
+    Consortiums:
+      TheConsortium:
+        Organizations:
+          - *DeviceManufacturer
+          - *HealthCareInstitution
+          - *Operator
+          
+  digitalthreadchannel:
+    Consortium: TheConsortium
+    <<: *ChannelDefaults
+    Application:
+      <<: *ApplicationDefaults
+      Organizations:
+        - *DeviceManufacturer
+        - *HealthCareInstitution
+        - *Operator
+
+  orderchannel:
+    Consortium: TheConsortium
+    <<: *ChannelDefaults
+    Application:
+      <<: *ApplicationDefaults
+      Organizations:
+        - *DeviceManufacturer
+        - *HealthCareInstitution
+        - *Operator
+
+  returnchannel:
+    Consortium: TheConsortium
+    <<: *ChannelDefaults
+    Application:
+      <<: *ApplicationDefaults
+      Organizations:
+        - *DeviceManufacturer
+        - *HealthCareInstitution
+        - *Operator
+        
+    

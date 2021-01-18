@@ -1,0 +1,71 @@
+network:
+  # used by init script to create genesis block and by peer-org-flow to parse consortiums
+  genesisProfile: OrgsOrdererGenesis
+  # used by init script to create genesis block 
+  systemChannelID: testchainid
+
+  # defines which organizations will join to which channels
+  channels:
+    - name: digitalthreadchannel
+      # all peers in these organizations will join the channel
+      orgs: [DeviceManufacturer, HealthCareInstitution, Operator]
+    - name: orderchannel
+      # all peers in these organizations will join the channel
+      orgs: [DeviceManufacturer, HealthCareInstitution, Operator]
+    - name: returnchannel
+      # all peers in these organizations will join the channel
+      orgs: [DeviceManufacturer, HealthCareInstitution, Operator]
+
+  # defines which chaincodes will be installed to which organizations
+  chaincodes:
+    - name: orderContract
+      # if defined, this will override the global chaincode.version value
+      version: # "2.0" 
+      # chaincode will be installed to all peers in these organizations
+      orgs: [DeviceManufacturer, HealthCareInstitution, Operator]
+      # at which channels are we instantiating/upgrading chaincode?
+      channels:
+      - name: orderchannel
+        # chaincode will be instantiated/upgraded using the first peer in the first organization
+        # chaincode will be invoked on all peers in these organizations
+        orgs: [DeviceManufacturer, HealthCareInstitution, Operator]
+        policy: OR('DeviceManufacturerMSP.member','HealthCareInstitutionMSP.member','OperatorMSP.member')
+        
+    - name: returnContract
+      # if defined, this will override the global chaincode.version value
+      version: # "2.0" 
+      # chaincode will be installed to all peers in these organizations
+      orgs: [DeviceManufacturer, HealthCareInstitution, Operator]
+      # at which channels are we instantiating/upgrading chaincode?
+      channels:
+      - name: returnchannel
+        # chaincode will be instantiated/upgraded using the first peer in the first organization
+        # chaincode will be invoked on all peers in these organizations
+        orgs: [DeviceManufacturer, HealthCareInstitution, Operator]
+        policy: OR('DeviceManufacturerMSP.member','HealthCareInstitutionMSP.member','OperatorMSP.member')
+
+    - name: DigitalThreadCC
+      # if defined, this will override the global chaincode.version value
+      version: # "2.0" 
+      # chaincode will be installed to all peers in these organizations
+      orgs: [DeviceManufacturer, HealthCareInstitution, Operator]
+      # at which channels are we instantiating/upgrading chaincode?
+      channels:
+      - name: digitalthreadchannel
+        # chaincode will be instantiated/upgraded using the first peer in the first organization
+        # chaincode will be invoked on all peers in these organizations
+        orgs: [DeviceManufacturer, HealthCareInstitution, Operator]
+        policy: OR('DeviceManufacturerMSP.member','HealthCareInstitutionMSP.member','OperatorMSP.member')
+
+    - name: userRegistration
+      # if defined, this will override the global chaincode.version value
+      version: # "2.0" 
+      # chaincode will be installed to all peers in these organizations
+      orgs: [DeviceManufacturer, HealthCareInstitution, Operator]
+      # at which channels are we instantiating/upgrading chaincode?
+      channels:
+      - name: digitalthreadchannel
+        # chaincode will be instantiated/upgraded using the first peer in the first organization
+        # chaincode will be invoked on all peers in these organizations
+        orgs: [DeviceManufacturer, HealthCareInstitution, Operator]
+        policy: OR('DeviceManufacturerMSP.member','HealthCareInstitutionMSP.member','OperatorMSP.member')

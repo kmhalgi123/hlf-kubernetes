@@ -1,0 +1,47 @@
+{
+    "name": "common",
+    "description": "DESCRIPTION",
+    "version": "1.0.0",
+    "client": {
+        "organization": "SampleOrg"
+    },
+    "organizations": {
+        "SampleOrg": {
+            "mspid": "DeviceManufacturerMSP",
+            "peers": [
+                "peer0.devicemanufacturer.hurley.lab"
+            ],
+            "certificateAuthorities": [
+                "ca-DeviceManufacturer"
+            ]
+        }
+    },
+    "orderers": {
+        "orderer.hurley.lab": {
+            "url": "grpc://172.17.0.7:7050",
+            "tlsCACerts": {
+                "pem": "-----BEGIN CERTIFICATE-----\nMIICXzCCAgagAwIBAgIRALMC5k+T9NGJVR7vwZp0K2swCgYIKoZIzj0EAwIwejEL\nMAkGA1UEBhMCVVMxEzARBgNVBAgTCkNhbGlmb3JuaWExFjAUBgNVBAcTDVNhbiBG\ncmFuY2lzY28xGzAZBgNVBAoTEm9yZGVyZXIuaHVybGV5LmxhYjEhMB8GA1UEAxMY\ndGxzY2Eub3JkZXJlci5odXJsZXkubGFiMB4XDTIxMDExMTIzMzkwMFoXDTMxMDEw\nOTIzMzkwMFowejELMAkGA1UEBhMCVVMxEzARBgNVBAgTCkNhbGlmb3JuaWExFjAU\nBgNVBAcTDVNhbiBGcmFuY2lzY28xGzAZBgNVBAoTEm9yZGVyZXIuaHVybGV5Lmxh\nYjEhMB8GA1UEAxMYdGxzY2Eub3JkZXJlci5odXJsZXkubGFiMFkwEwYHKoZIzj0C\nAQYIKoZIzj0DAQcDQgAEM2RSCItbY4QrZhI+1tXSRFT9k+RcaN4mPHjvue8fkd/T\nl7uqKcMytRBeGv235utHFrZ3560KH7GDda79fL1BwaNtMGswDgYDVR0PAQH/BAQD\nAgGmMB0GA1UdJQQWMBQGCCsGAQUFBwMCBggrBgEFBQcDATAPBgNVHRMBAf8EBTAD\nAQH/MCkGA1UdDgQiBCBQk9Qd3WBaoxNOICLC/lXSQPzVF1X3w5SBQDfSbNP9GjAK\nBggqhkjOPQQDAgNHADBEAiAsAuelfvx42ZSc6p2amY14UBG6O42NJUJIgSp+Pc3H\nGAIgOvioer1fGCX47jwmcVFvK2WKy6SDrfkJtV6nwSDF1XM=\n-----END CERTIFICATE-----"
+            }
+        }
+    },
+    "peers": {
+        "peer0.devicemanufacturer.hurley.lab": {
+            "url": "grpc://172.17.0.10:7051",
+            "tlsCACerts": {
+                "pem": "-----BEGIN CERTIFICATE-----\nMIICjjCCAjSgAwIBAgIRAKhDuPKEBS54liXlWnx6MsYwCgYIKoZIzj0EAwIwgZAx\nCzAJBgNVBAYTAlVTMRMwEQYDVQQIEwpDYWxpZm9ybmlhMRYwFAYDVQQHEw1TYW4g\nRnJhbmNpc2NvMSYwJAYDVQQKEx1EZXZpY2VNYW51ZmFjdHVyZXIuaHVybGV5Lmxh\nYjEsMCoGA1UEAxMjdGxzY2EuRGV2aWNlTWFudWZhY3R1cmVyLmh1cmxleS5sYWIw\nHhcNMjEwMTExMjMzOTAwWhcNMzEwMTA5MjMzOTAwWjCBkDELMAkGA1UEBhMCVVMx\nEzARBgNVBAgTCkNhbGlmb3JuaWExFjAUBgNVBAcTDVNhbiBGcmFuY2lzY28xJjAk\nBgNVBAoTHURldmljZU1hbnVmYWN0dXJlci5odXJsZXkubGFiMSwwKgYDVQQDEyN0\nbHNjYS5EZXZpY2VNYW51ZmFjdHVyZXIuaHVybGV5LmxhYjBZMBMGByqGSM49AgEG\nCCqGSM49AwEHA0IABHoYDYt776WCZNvjIOYEz44BIJHWdDSOEmheAcgLSPDvP/Wf\nY1WmNFROqLEBEc3YEvwKg0sbBNnWc25YQwKvawujbTBrMA4GA1UdDwEB/wQEAwIB\npjAdBgNVHSUEFjAUBggrBgEFBQcDAgYIKwYBBQUHAwEwDwYDVR0TAQH/BAUwAwEB\n/zApBgNVHQ4EIgQgEYS+udRMwaoaobRct/6FHnxWp3EjTBw3YvvMKn811PwwCgYI\nKoZIzj0EAwIDSAAwRQIhAJNWq+nvcFeD0b2pVUeJrJoVEH4wfyhyiubtdEuuokpl\nAiB4NCdc6xJywxfZhaMw2rUryogKLdO/ejaBvPCMrfDpoA==\n-----END CERTIFICATE-----"
+            },
+            "grpcOptions": {
+                "ssl-target-name-override": "peer0.devicemanufacturer.hurley.lab"
+            }
+        }
+    },
+    "certificateAuthorities": {
+        "ca-DeviceManufacturer": {
+            "url": "http://172.17.0.6:7054",
+            "caName": "ca-DeviceManufacturer",
+            "tlsCACerts": {
+                "pem": "-----BEGIN CERTIFICATE-----\nMIICjjCCAjSgAwIBAgIRAKhDuPKEBS54liXlWnx6MsYwCgYIKoZIzj0EAwIwgZAx\nCzAJBgNVBAYTAlVTMRMwEQYDVQQIEwpDYWxpZm9ybmlhMRYwFAYDVQQHEw1TYW4g\nRnJhbmNpc2NvMSYwJAYDVQQKEx1EZXZpY2VNYW51ZmFjdHVyZXIuaHVybGV5Lmxh\nYjEsMCoGA1UEAxMjdGxzY2EuRGV2aWNlTWFudWZhY3R1cmVyLmh1cmxleS5sYWIw\nHhcNMjEwMTExMjMzOTAwWhcNMzEwMTA5MjMzOTAwWjCBkDELMAkGA1UEBhMCVVMx\nEzARBgNVBAgTCkNhbGlmb3JuaWExFjAUBgNVBAcTDVNhbiBGcmFuY2lzY28xJjAk\nBgNVBAoTHURldmljZU1hbnVmYWN0dXJlci5odXJsZXkubGFiMSwwKgYDVQQDEyN0\nbHNjYS5EZXZpY2VNYW51ZmFjdHVyZXIuaHVybGV5LmxhYjBZMBMGByqGSM49AgEG\nCCqGSM49AwEHA0IABHoYDYt776WCZNvjIOYEz44BIJHWdDSOEmheAcgLSPDvP/Wf\nY1WmNFROqLEBEc3YEvwKg0sbBNnWc25YQwKvawujbTBrMA4GA1UdDwEB/wQEAwIB\npjAdBgNVHSUEFjAUBggrBgEFBQcDAgYIKwYBBQUHAwEwDwYDVR0TAQH/BAUwAwEB\n/zApBgNVHQ4EIgQgEYS+udRMwaoaobRct/6FHnxWp3EjTBw3YvvMKn811PwwCgYI\nKoZIzj0EAwIDSAAwRQIhAJNWq+nvcFeD0b2pVUeJrJoVEH4wfyhyiubtdEuuokpl\nAiB4NCdc6xJywxfZhaMw2rUryogKLdO/ejaBvPCMrfDpoA==\n-----END CERTIFICATE-----"
+            }
+        }
+    }
+}
